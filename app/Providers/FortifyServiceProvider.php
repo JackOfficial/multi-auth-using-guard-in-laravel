@@ -21,7 +21,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+       if (request()->is('admin/*')) {
+           config()->set('fortify.guard', 'admin');
+           config()->set('fortify.home', '/admin/home');
+       }
     }
 
     /**
@@ -46,29 +49,32 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
+        // Fortify::loginView(function () {
+        //     return view('auth.login');
+        // });
 
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
+        // Fortify::registerView(function () {
+        //     return view('auth.register');
+        // });
 
-        Fortify::requestPasswordResetLinkView(function () {
-            return view('auth.forgot-password');
-        });
+        Fortify::registerView('auth.register');
+        Fortify::loginView('auth.login');
 
-        Fortify::resetPasswordView(function ($request) {
-            return view('auth.reset-password', ['request' => $request]);
-        });
+        // Fortify::requestPasswordResetLinkView(function () {
+        //     return view('auth.forgot-password');
+        // });
 
-        Fortify::verifyEmailView(function () {
-            return view('auth.verify-email');
-        });
+        // Fortify::resetPasswordView(function ($request) {
+        //     return view('auth.reset-password', ['request' => $request]);
+        // });
 
-        Fortify::confirmPasswordView(function () {
-            return view('auth.confirm-password');
-        });
+        // Fortify::verifyEmailView(function () {
+        //     return view('auth.verify-email');
+        // });
+
+        // Fortify::confirmPasswordView(function () {
+        //     return view('auth.confirm-password');
+        // });
 
         
     }

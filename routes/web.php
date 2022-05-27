@@ -16,9 +16,11 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('redirect', [SocialController::class, 'redirect'])->name('redirect');
 Route::get('callback', [SocialController::class, 'callback'])->name('callback');
+
+require __DIR__ . '/admin.php';
