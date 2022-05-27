@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('redirect', [SocialController::class, 'redirect'])->name('redirect');
 Route::get('callback', [SocialController::class, 'callback'])->name('callback');
 
