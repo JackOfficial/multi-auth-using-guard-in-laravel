@@ -20,5 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('home', [HomeController::class, 'index'])->name('home');
-Route::get('redirect', [SocialController::class, 'redirect'])>name('redirect');
+Route::get('redirect', [SocialController::class, 'redirect'])->name('redirect');
 Route::get('callback', [SocialController::class, 'callback'])->name('callback');
